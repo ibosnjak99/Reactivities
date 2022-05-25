@@ -10,7 +10,6 @@ function App() {
 
   useEffect(() => {
     axios.get('https://localhost:5001/api/activities').then(response => {
-      console.log(response);
       setActivities(response.data);
     })
   }, [])
