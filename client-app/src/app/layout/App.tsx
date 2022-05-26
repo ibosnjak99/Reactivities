@@ -2,9 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { Header, List } from 'semantic-ui-react';
-import logo from './logo.svg';
-import './App.css';
-
+  
 function App() {
   const [activities, setActivities] = useState([]);
 
