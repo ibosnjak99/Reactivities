@@ -24,10 +24,10 @@ export default observer(function ActivityList() {
                             <Item.Meta>{activity.date}</Item.Meta>
                             <ItemDescription>
                                 <div>{activity.description}</div>
-                                <div>{activity.venue}, {activity.city}</div>
+                                <div>{activity.city}</div>
                             </ItemDescription>
                             <ItemExtra>
-                                <Button onClick={() => activityStore.selectActivity(activity.id)} floated='right' content='View' color='blue'/>
+                                <Button onClick={() => activityStore.selectActivity(activity.id)} floated='right' content='Details' color='blue'/>
                                 <Button 
                                     name={activity.id}
                                     loading={loading && target === activity.id} 

@@ -1,14 +1,20 @@
-import React from "react";
+import { observer } from "mobx-react-lite";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Card, Image, Button } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
 
-export default function ActivityDetails() {
-
+export default observer(function ActivityDetails() {
     const {activityStore} = useStore();
-    const {selectedActivity: activity, openForm, cancelSelectedActivity, closeForm} = activityStore;
+    const {selectedActivity: activity, cancelSelectedActivity, closeForm, loadActivity, loadingInitial} = activityStore;
+    const {id} = useParams<{id: string}>();
 
-    if (!activity) return <LoadingComponent/>;
+    useEffect(() => {
+        if (id) loadActivity(id);
+    }, [id, loadActivity]);
+
+    if (loadingInitial || !activity) return <LoadingComponent/>;
 
     return(
         <Card fluid>
@@ -16,18 +22,21 @@ export default function ActivityDetails() {
             <Card.Content>
             <Card.Header>{activity.title}</Card.Header>
             <Card.Meta>
-                <span>Joined in {activity.date}</span>
+                <span>Posted {activity.date}</span>
             </Card.Meta>
             <Card.Description>
-                {activity.description}
+                {activity.category} <br/>
+                {activity.description} <br/>
+                {activity.venue} <br/>
+                {activity.city} 
             </Card.Description>
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openForm(activity.id)} basic color='blue' content='Edit'/>
-                    <Button onClick={() => {cancelSelectedActivity(); closeForm();}} basic color='grey' content='Cancel'/>
+                    <Button as={Link} to={`/manage/${activity.id}`} target="_blank" basic color='blue' content='Edit'/>
+                    <Button as={Link} to='/activities' onClick={() => {cancelSelectedActivity(); closeForm();}} basic color='grey' content='Cancel'/>
                 </Button.Group>
             </Card.Content>
         </Card>
     )
-}
+})
