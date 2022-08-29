@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Button, Icon, Item, ItemContent, ItemDescription, ItemExtra, ItemHeader, Label, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { Activity } from "../../../app/models/Activity";
+import { Activity } from "../../../app/models/activity";
 import { useStore } from "../../../app/stores/store";
 import { format } from "date-fns";
 
