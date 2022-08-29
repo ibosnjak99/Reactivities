@@ -11,7 +11,7 @@ import ActivityDetailedSidebar from "./ActivityDetailedSidebar";
 
 export default observer(function ActivityDetails() {
     const {activityStore} = useStore();
-    const {selectedActivity: activity, cancelSelectedActivity, closeForm, loadActivity, loadingInitial} = activityStore;
+    const {selectedActivity: activity, loadActivity, loadingInitial} = activityStore;
     const {id} = useParams<{id: string}>();
 
     useEffect(() => {

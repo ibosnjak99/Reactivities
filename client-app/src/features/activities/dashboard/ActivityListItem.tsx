@@ -3,6 +3,7 @@ import { Button, Icon, Item, ItemContent, ItemDescription, ItemExtra, ItemHeader
 import { Link } from "react-router-dom";
 import { Activity } from "../../../app/models/Activity";
 import { useStore } from "../../../app/stores/store";
+import { format } from "date-fns";
 
 interface Props {
     activity: Activity
@@ -46,7 +47,18 @@ export default function ActivityListItem({activity}: Props) {
             <Segment clearing>
                 <span>
                     {activity.description}
-                    <Button onClick={() => activityStore.selectActivity(activity.id)} color='teal' floated='right' content='Details' />
+                    <Button 
+                        as={Link}
+                        to={`/activities/${activity.id}`}
+                        color='teal' 
+                        floated='right' 
+                        content='Details' />
+                    <Button 
+                        as={Link}
+                        to={`/manage/${activity.id}`}
+                        color='grey' 
+                        floated='right' 
+                        content='Edit' />
                 </span>
             </Segment>
         </Segment.Group>
