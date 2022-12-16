@@ -1,18 +1,19 @@
 using System;
 using System.Collections.Generic;
+using App.Profiles;
 
-namespace Domain
+namespace App.Activities
 {
-    public class Activity
+    public class ActivityDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
+        public string date { get; set;}
         public string Description { get; set; }
         public string Category { get; set; }
         public string City { get; set; }
         public string Venue { get; set; }
-        #nullable enable
-        public string? Date { get; set; }
-        public ICollection<ActivityAttendee> Attendees { get; set; } = new List<ActivityAttendee>();
+        public string HostUsername { get; set; }
+        public ICollection<Profile> Attendees { get; set; }
     }
 }

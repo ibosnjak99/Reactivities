@@ -7,6 +7,8 @@ using Microsoft.OpenApi.Models;
 using MediatR;
 using App.Core;
 using App;
+using Infrastructure.Security;
+using App.Interfaces;
 
 namespace API.Extensions
 {
@@ -29,6 +31,7 @@ namespace API.Extensions
             });
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddScoped<IUserAccessor, UserAccessor>();
 
             return services;
         }
