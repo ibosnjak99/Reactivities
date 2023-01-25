@@ -5,6 +5,7 @@ import { Button, Container, Header } from "semantic-ui-react";
 import { useStore } from "../../app/stores/store";
 import LoginForm from "../users/LoginForm";
 import RegisterForm from "../users/RegisterForm";
+import "../styles/HomePage.css";
 
 export default observer (function HomePage() {
     const {userStore, modalStore} = useStore();
@@ -13,13 +14,16 @@ export default observer (function HomePage() {
             <h1>Homepage</h1>
             {userStore.isLoggedIn ? (
                 <>
-                    <h2>Welcome</h2>
-                    <Button as={Link} to='/activities' size='huge' inverted > Activities </Button>
+                    <div className="buttons">
+                        <Button as={Link} to='/activities' style={{ color: "white", background: "silver", fontSize: 20 }} > Activities </Button>
+                    </div>
                 </>
             ) : (
                 <>
-                    <Button onClick={() => modalStore.openModal(<LoginForm />)} size='huge'  > Login </Button>
-                    <Button onClick={() => modalStore.openModal(<RegisterForm />)} size='huge' > Register </Button>
+                    <div className="buttons">
+                        <Button onClick={() => modalStore.openModal(<LoginForm />)} style={{ color: "white", background: "silver", fontSize: 16 }}> Login </Button>
+                        <Button onClick={() => modalStore.openModal(<RegisterForm />)} style={{ color: "white", background: "silver", fontSize: 16, marginLeft: 40 }}> Register </Button>
+                    </div>
                 </>
             )}
         </Container>

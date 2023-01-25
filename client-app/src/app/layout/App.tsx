@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer position='bottom-right' hideProgressBar />
+      <ToastContainer position='bottom-right' />
       <ModalContainer />
       <Route exact path='/' component={HomePage} />
       <Route
